@@ -1,16 +1,11 @@
-# share_cost
+# Share Cost 
 
-A new Flutter project.
+This is a simple Flutter Application that helps people share cost of any goods they purchase.
 
-## Getting Started
+If you wish to give a tip, the app is able to show how much each person should contribute. It splits the bill equally depending on the mumber of perticipants.
 
-This project is a starting point for a Flutter application.
+The app uses Firebase as the database. 
 
-A few resources to get you started if this is your first Flutter project:
+Since it's not acomplex app, the satemanagent pattern used is setState()
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Added a print reciepts feature to show users how they shared the cost, which is in PDF format.

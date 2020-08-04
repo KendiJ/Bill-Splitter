@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "667221252427",
+    "firebase_url": "https://bill-splitter-b1301.firebaseio.com",
+    "project_id": "bill-splitter-b1301",
+    "storage_bucket": "bill-splitter-b1301.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667221252427:android:f11a620a2c0f5cf9f4b0ce",
+        "android_client_info": {
+          "package_name": "com.kendi.share_cost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667221252427-fkupg0tjb3edj28l81i2imn0dlnvedfh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZA1XVi4SgHXBUWnyKpAk_Z1tK7R0td8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667221252427-fkupg0tjb3edj28l81i2imn0dlnvedfh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
