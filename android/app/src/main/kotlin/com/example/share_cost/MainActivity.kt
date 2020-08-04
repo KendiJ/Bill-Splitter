@@ -1,4 +1,4 @@
-package com.example.share_cost
+package com.kendi.share_cost
 
 import io.flutter.embedding.android.FlutterActivity
 

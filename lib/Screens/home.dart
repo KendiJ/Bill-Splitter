@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.tealAccent,
       body: Padding(
         padding: const EdgeInsets.only(top:40),
         child: Container(
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       keyboardType: TextInputType.numberWithOptions(decimal: true),
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.attach_money),
-                        prefixText: "Bill Amount",
+                        hintText: "Enter total bill",
                         prefixStyle: TextStyle(
                           color: Colors.grey,
                         )
@@ -76,12 +77,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                     ),
+                    SizedBox(height: 20,),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text("Split among",
+                          Text("People sharing",
                             style: TextStyle(color: Colors.indigo,
                             fontSize: 16.0),),
                           Row(
@@ -136,6 +138,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left:10.0,right: 10.0,top: 40.0),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(12.5),
+                ),
+                child: Column(
+                  children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -172,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
