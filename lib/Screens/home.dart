@@ -1,7 +1,8 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:share_cost/Screens/reciepts.dart';
+import 'package:share_cost/animations/fadeAnimation.dart';
+// import 'package:share_cost/Screens/reciepts.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,10 +15,29 @@ class _HomeScreenState extends State<HomeScreen> {
   double personAmount = 0;
   int personCount = 1;
   double tipAmount = 0;
+  
+  //the reset button parameters
+  bool resetispressed = true;
+  void resetbutton(){}
+
+  // Map function wich is called in the database
+  Map bills;
+
+  addBills() {
+
+    Map<String, dynamic> demoBills = {"name" : "Super Splitter"};
+
+    CollectionReference collectionReference = Firestore.instance.collection('bills');
+    collectionReference.add(demoBills);
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    
+
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Colors.grey[300],
       body: Padding(
         padding: const EdgeInsets.only(top: 40),
         child: Container(
@@ -25,21 +45,21 @@ class _HomeScreenState extends State<HomeScreen> {
           child: ListView(
             scrollDirection: Axis.vertical,
             children: <Widget>[
-              Padding(
+              FadeAnimation(1.4, Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                     height: 200.0,
                     width: 600.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
-                      color: Colors.deepPurpleAccent[100],
+                      color: Colors.deepOrange[200],
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           "Total per person",
-                          style: TextStyle(color: Colors.white, fontSize: 16.0),
+                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 20.0),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(12.0),
@@ -47,14 +67,29 @@ class _HomeScreenState extends State<HomeScreen> {
                             "\$${personAmount.toStringAsFixed(2)}",
                             style: TextStyle(
                               fontSize: 55.0,
-                              color: Colors.indigo,
+                              color: Colors.teal,
                             ),
                           ),
                         ),
                       ],
                     )),
-              ),
-              Container(
+              )),
+              
+              FadeAnimation(2,Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    FloatingActionButton(
+                      child: Text("Reset"),
+                      backgroundColor: Colors.red,
+                      onPressed: resetispressed ? resetbutton: null,
+                    ),
+                  ],
+                ),
+              )),
+              
+              FadeAnimation(1.4, Container(
                 margin:
                     const EdgeInsets.only(left: 10.0, right: 10.0, top: 40.0),
                 decoration: BoxDecoration(
@@ -79,9 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                   
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -109,8 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 40.0,
                                     width: 40.0,
                                     decoration: BoxDecoration(
-                                        color: Colors.purpleAccent
-                                            .withOpacity(0.1),
+                                        color: Colors.redAccent[100],
                                         borderRadius:
                                             BorderRadius.circular(5.0)),
                                     child: Icon(
@@ -145,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 40.0,
                                   decoration: BoxDecoration(
                                       color:
-                                          Colors.purpleAccent.withOpacity(0.1),
+                                          Colors.lightGreen,
                                       borderRadius: BorderRadius.circular(5.0)),
                                   child: Icon(
                                     Icons.add,
@@ -160,8 +192,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-              ),
-              Container(
+              )),
+              SizedBox(height:10),
+              FadeAnimation(1.8,Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "A tip a day motivates me", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.teal, fontSize: 15),
+                ),
+              )),
+              FadeAnimation(1.6, Container(
                 margin:
                     const EdgeInsets.only(left: 10.0, right: 10.0, top: 40.0),
                 decoration: BoxDecoration(
@@ -178,14 +217,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text(
                             "Tip",
                             style:
-                                TextStyle(color: Colors.grey, fontSize: 20.0),
+                                TextStyle(color: Colors.teal, fontSize: 18),
                           ),
                           // ignore: unnecessary_brace_in_string_interps
                           Text(
                             // ignore: unnecessary_brace_in_string_interps
                             "\$${tipAmount}",
-                            style: TextStyle(
-                                color: Colors.teal, fontSize: 18.0),
+                            style:
+                                TextStyle(color: Colors.teal, fontSize: 18.0),
                           ),
                         ],
                       ),
@@ -196,8 +235,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Text(
                             "$tipPercentage %",
-                            style: TextStyle(
-                                color: Colors.teal, fontSize: 18.0),
+                            style:
+                                TextStyle(color: Colors.teal, fontSize: 18.0),
                           ),
                           Slider(
                             value: tipPercentage.toDouble(),
@@ -219,31 +258,32 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ],
                 ),
-              ),
-              SizedBox(height: 20),
-              Container(
+              )),
+              SizedBox(height: 10),
+              FadeAnimation(1.8, Container(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                        elevation: 5,
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Reciepts()));
-                        },
-                        padding: EdgeInsets.all(15.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        color: Colors.deepPurpleAccent[50],
-                        child: Text(
-                          'Print reciept',
-                          style: TextStyle(
-                            color: Colors.indigo,
-                            letterSpacing: 1.5,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                  ))
+                padding: const EdgeInsets.all(8.0),
+                child: RaisedButton(
+                    elevation: 5,
+                    onPressed: () {
+                      addBills();
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => Reciepts()));
+                    },
+                    padding: EdgeInsets.all(15.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    color: Colors.white,
+                    child: Text(
+                      'Save Data',
+                      style: TextStyle(
+                        color: Colors.teal,
+                        letterSpacing: 1.5,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+              )))
             ],
           ),
         ),
