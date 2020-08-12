@@ -1,4 +1,4 @@
-# Share Cost App
+# Share Bills App
 
 This is a simple Flutter Application that helps people share cost of any goods they purchase.
 

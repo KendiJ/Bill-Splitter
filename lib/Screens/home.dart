@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+     import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share_cost/animations/fadeAnimation.dart';
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     FloatingActionButton(
                       child: Text("Reset"),
                       backgroundColor: Colors.red,
-                      onPressed: resetispressed ? resetbutton: null,
+                      onPressed: resetispressed ? resetbutton: true,
                     ),
                   ],
                 ),
