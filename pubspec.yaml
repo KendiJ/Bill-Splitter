@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   cloud_firestore:
   simple_animations:
+  mpesa_flutter_plugin: ^1.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

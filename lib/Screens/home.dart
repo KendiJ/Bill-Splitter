@@ -1,15 +1,49 @@
-     import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mpesa_flutter_plugin/initializer.dart';
+import 'package:mpesa_flutter_plugin/mpesa_flutter_plugin.dart';
 import 'package:share_cost/animations/fadeAnimation.dart';
+
+
 // import 'package:share_cost/Screens/reciepts.dart';
 
 class HomeScreen extends StatefulWidget {
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  var number = TextEditingController();
+  // method to initiate the transaction
+  Future<void>startCheckOut({
+    String userPhone,
+    String amount
+})async{
+    dynamic transactionInitialisation;
+    try{
+      transactionInitialisation = await MpesaFlutterPlugin.initializeMpesaSTKPush(
+          businessShortCode: "174379",
+          transactionType: TransactionType.CustomerPayBillOnline,
+          amount: double.parse(amount),
+          partyA: userPhone,
+          partyB: "174379",
+          callBackURL: Uri.parse("https://www.safaricom.co.ke"),
+          accountReference: "M-pesa Bill Splitter",
+          phoneNumber: userPhone,
+          transactionDesc: "Purchase",
+          baseUri: Uri.parse("https://www.safaricom.co.ke"),
+          passKey: "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919");
+      print("Transaction Result" + transactionInitialisation.toString());
+      return transactionInitialisation;
+    }
+    catch(e) {
+      print("Exception" + e.toString());
+    }
+  }
+
   double billAmount = 0;
   int tipPercentage = 0;
   double personAmount = 0;
@@ -266,8 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: RaisedButton(
                     elevation: 5,
                     onPressed: () {
-                      addBills();
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => Reciepts()));
+                      startCheckOut(userPhone: "254799182010", amount: "1");
                     },
                     padding: EdgeInsets.all(15.0),
                     shape: RoundedRectangleBorder(
@@ -275,7 +308,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     color: Colors.white,
                     child: Text(
-                      'Save Data',
+                      'Pay with M-Pesa',
                       style: TextStyle(
                         color: Colors.teal,
                         letterSpacing: 1.5,
