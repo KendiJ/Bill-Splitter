@@ -4,4 +4,13 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application>
+    ...
+     <meta-data
+        android:name="com.hover.ApiKey"  
+        android:value="<4a59d46e336e961fc92773d4b1f6b5d9>"/>
+    </application>
 </manifest>
+
+<!--4a59d46e336e961fc92773d4b1f6b5d9--> 

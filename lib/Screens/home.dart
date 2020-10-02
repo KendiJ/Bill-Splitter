@@ -15,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
 
   var number = TextEditingController();
   // method to initiate the transaction
@@ -30,11 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
           amount: double.parse(amount),
           partyA: userPhone,
           partyB: "174379",
-          callBackURL: Uri.parse("https://www.safaricom.co.ke"),
+          callBackURL: Uri.parse("https://sandbox.safaricom.co.ke"),
           accountReference: "M-pesa Bill Splitter",
           phoneNumber: userPhone,
           transactionDesc: "Purchase",
-          baseUri: Uri.parse("https://www.safaricom.co.ke"),
+          baseUri: Uri.parse("https://sandbox.safaricom.co.ke"),
           passKey: "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919");
       print("Transaction Result" + transactionInitialisation.toString());
       return transactionInitialisation;
@@ -54,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool resetispressed = true;
   void resetbutton(){}
 
-  // Map function wich is called in the database
+  // Map function which is called in the database
   Map bills;
 
   addBills() {
